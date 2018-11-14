@@ -1,0 +1,17 @@
+p Welcome to the registration page! If you are a new user please register below.
+
+form action="/register" method="POST"
+  label for="username" Username:
+  input#username type="text" name="username"
+  label for="password" Password:
+  input#password type="password" name="password"
+  p Please select your role:
+  label for="stud" Student
+  input#stud type="radio" name="role" value="student"
+  label for="instr" Instructor
+  input#instr type="radio" name="role" value="instructor"
+  input type="submit" value="Register"
+
+p== @invalid_username
+
+
