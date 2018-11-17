@@ -11,9 +11,6 @@ configure do
 end
 
 get '/' do
-  if session[:id]
-    @logged_user = User.get(session[:id])
-  end
   slim :home
 end
 
@@ -28,7 +25,8 @@ post '/login' do
   if @user
     password = BCrypt::Password.new(@user.password)
     if @user.username && password == params[:password]
-      session[:id] = @user.username
+      #session[:id] = @user.username
+      session[:id] = @user
       redirect to('/')
     else
       redirect to('/login')
@@ -45,8 +43,5 @@ get '/logout' do
 end
 
 not_found do
-  if session[:id]
-    @logged_user = User.get(session[:id])
-  end
   slim :not_found
 end
