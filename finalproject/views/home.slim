@@ -1,1 +1,4 @@
-p Welcome to this voting website! Choose your top three websites' designs
+- if session[:id]
+  h2== "Welcome #{session[:id]}! Choose your top three websites' designs"
+-else
+  h2 Welcome! Please log-in. If you are a new user register.

@@ -9,10 +9,10 @@ DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
 #Users table class
 class User
   include DataMapper::Resource
-  property :username, String, key:true
-  property :password, String
-  property :role, String
-  property :vote_bit, Integer
+  property :username, String, :key => true, :unique => true
+  property :password, String, :required => true
+  property :role, String, :required => true
+  property :vote_bit, Integer, :default => 0
 end
 
 DataMapper.finalize()
@@ -20,26 +20,23 @@ DataMapper.finalize()
 #Register path calls the register form template and creates a User object
 get '/register' do
   @title = "Register"
-  @user = User.new
   slim :register
 end
 
 #Post register path looks if username is already in database. If not, creates a new user in the users database
 post '/register' do
-  @user = User.get(params[:username])
-  @invalid_username = nil
+  #Search user in database, converts to downcase to make sure username is case-insensitive
+  user = User.get(params[:username].downcase)
 
-  if @user
+  #if user is found don't add to database, else create user
+  if user
     @invalid_username = "Sorry that username is already taken"
     slim :register
   else
     hash_password = BCrypt::Password.create(params[:password]) #store this value in the database
-    hash_password = BCrypt::Password.new(hash_password) #use this to hash the value
+    #hash_password = BCrypt::Password.new(hash_password) #pass the stored value in this one and use this to make the comparisson
 
-    user = User.create(username: params[:username], password: hash_password, role: params[:role])
-    user.vote_bit = 0
-    user.save
-    redirect to("/")
+    User.create(username: params[:username].downcase, password: hash_password, role: params[:role])
+    redirect to("/login")
   end
-
 end
