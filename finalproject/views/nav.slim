@@ -2,10 +2,11 @@ nav
   ul
     li <a href="/" title="Home">Home</a>
     -if session[:id]
-      -if @logged_user.role == 'instructor'
-        li <a href="/upload" title="UploadCSV">Upload CSV</a>
+      -if session[:id].role == 'instructor'
+        li <a href="/uploadusers" title="UploadCSV">Upload CSV</a>
+        li <a href="/uploadwebsites" title="UploadZip">Upload Websites</a>
         li <a href="/report" title="VoteReport">Vote Report</a>
-      -elsif @logged_user.role == 'student'
+      -elsif session[:id].role == 'student'
         li <a href="/vote" title="Vote">Vote</a>
       li <a href="/logout" title="Logout">Logout</a>
     -else
