@@ -1,0 +1,1 @@
+This Public folder is needed since in here is where the contents of the zip folder will be stored
