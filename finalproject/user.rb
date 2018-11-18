@@ -34,8 +34,6 @@ post '/register' do
     slim :register
   else
     hash_password = BCrypt::Password.create(params[:password]) #store this value in the database
-    #hash_password = BCrypt::Password.new(hash_password) #pass the stored value in this one and use this to make the comparisson
-
     User.create(username: params[:username].downcase, password: hash_password, role: params[:role])
     redirect to("/login")
   end

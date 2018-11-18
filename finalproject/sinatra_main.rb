@@ -5,12 +5,15 @@ require './user'
 require './votes'
 require './sites'
 require 'bcrypt'
+require 'zip'
 
 configure do
   enable :sessions
 end
 
 get '/' do
+  @count_sites = Site.count
+  @websites = Site.all
   slim :home
 end
 
@@ -25,7 +28,6 @@ post '/login' do
   if @user
     password = BCrypt::Password.new(@user.password)
     if @user.username && password == params[:password]
-      #session[:id] = @user.username
       session[:id] = @user
       redirect to('/')
     else
