@@ -3,8 +3,8 @@ nav
     li <a href="/" title="Home">Home</a>
     -if session[:id]
       -if session[:id].role == 'instructor'
-        li <a href="/uploadusers" title="UploadCSV">Upload CSV</a>
-        li <a href="/uploadwebsites" title="UploadZip">Upload Websites</a>
+        li <a href="/uploadcsv" title="UploadCSV">Upload CSV</a>
+        li <a href="/uploadzip" title="UploadZip">Upload Websites</a>
         li <a href="/report" title="VoteReport">Vote Report</a>
       -elsif session[:id].role == 'student'
         li <a href="/vote" title="Vote">Vote</a>
