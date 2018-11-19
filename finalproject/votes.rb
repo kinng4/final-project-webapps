@@ -19,6 +19,8 @@ get '/vote' do
   if session[:id]
     @student = User.get(session[:id].username)
     halt(401, 'Not Authorized') unless @student.role == 'student'
+    @sites_users = Site.all
+    @sites_count = Site.count
     slim :vote_form
   else
     halt(401, 'Not Authorized')
@@ -32,13 +34,20 @@ post '/vote' do
   if vote
     redirect to('/vote')
   else
-    Voting.create(username: session[:id].username, first_place: params[:first_place],
-                  second_place: params[:second_place], third_place: params[:third_place])
+    if params[:first_place] != params[:second_place] && params[:first_place] != params[:third_place] && params[:second_place] != params[:third_place]
+      Voting.create(username: session[:id].username, first_place: params[:first_place],
+                    second_place: params[:second_place], third_place: params[:third_place])
 
-    user = User.get(session[:id].username)
-    user.vote_bit = 1
-    user.save
-
-    redirect to('/vote')
+      user = User.get(session[:id].username)
+      user.vote_bit = 1
+      user.save
+      redirect to('/vote')
+    else
+      @student = User.get(session[:id].username)
+      @invalid_votes = "Error: same user can't be chosen more than once."
+      @sites_users = Site.all
+      @sites_count = Site.count
+      slim :vote_form
+    end
   end
 end
