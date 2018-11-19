@@ -2,13 +2,31 @@
   p== "Hi #{session[:id].username}! Please indicate your top three users with the best designs"
 
   form action="/vote" method="POST"
-    label for="first_place" 1st Place:
-    input#first_place type="text" name="first_place"
-    label for="second_place" 2nd Place:
-    input#second_place type="text" name="second_place"
-    label for="third_place" 3rd Place:
-    input#third_place type="text" name="third_place"
-    input type="submit" value="Vote!"
+
+    -if @sites_count > 0
+      label for="first_place" 1st Place:
+      select#first_place name="first_place"
+        -@sites_users.each do |user|
+          option value="#{user.username}" =="#{user.username}"
+          end
+
+      label for="second_place" 2nd Place:
+      select#second_place name="second_place"
+        - @sites_users.each do |user|
+          option value="#{user.username}" =="#{user.username}"
+          end
+
+      label for="third_place" 3rd Place:
+      select#third_place name="third_place"
+        - @sites_users.each do |user|
+          option value="#{user.username}" =="#{user.username}"
+          end
+
+      input type="submit" value="Vote!"
+    -else
+      p There are no websites yet!
 
 -else
   p Thank you! We have your votes.
+
+p== @invalid_votes
