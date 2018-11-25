@@ -1,28 +1,32 @@
 -if @student.vote_bit == 0
-  p== "Hi #{session[:id].username}! Please indicate your top three users with the best designs"
+  h2== "Hi #{session[:id].username}! Please indicate your top three users with the best designs"
 
   form action="/vote" method="POST"
-
     -if @sites_count > 0
-      label for="first_place" 1st Place:
-      select#first_place name="first_place"
-        -@sites_users.each do |user|
-          option value="#{user.username}" =="#{user.username}"
-          end
+      div class="form-group row"
+        label for="first_place" class="col-sm-2 col-form-label" 1st Place
+        div class="col-sm-10"
+          select#first_place class="custom-select" name="first_place"
+            -@sites_users.each do |user|
+              option value="#{user.username}" =="#{user.username}"
 
-      label for="second_place" 2nd Place:
-      select#second_place name="second_place"
-        - @sites_users.each do |user|
-          option value="#{user.username}" =="#{user.username}"
-          end
+      div class="form-group row"
+        label for="second_place" class="col-sm-2 col-form-label" 2nd Place
+        div class="col-sm-10"
+          select#second_place class="custom-select" name="second_place"
+            - @sites_users.each do |user|
+              option value="#{user.username}" =="#{user.username}"
 
-      label for="third_place" 3rd Place:
-      select#third_place name="third_place"
-        - @sites_users.each do |user|
-          option value="#{user.username}" =="#{user.username}"
-          end
+      div class="form-group row"
+        label for="third_place" class="col-sm-2 col-form-label" 3rd Place
+        div class="col-sm-10"
+          select#third_place class="custom-select" name="third_place"
+            - @sites_users.each do |user|
+              option value="#{user.username}" =="#{user.username}"
 
-      input type="submit" value="Vote!"
+      div class="form-group row"
+        div class="col-sm-10"
+          input type="submit" class="btn btn-primary" value="Vote!"
     -else
       p There are no websites yet!
 

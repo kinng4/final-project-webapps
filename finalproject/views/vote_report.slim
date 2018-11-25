@@ -1,21 +1,22 @@
 -if @votes_count > 0
-  h2 Here is a report of all votes
+  h2 Student Vote Report
 
-  table border="1"
-    tr
-      td Who Voted
-      td 1st Place
-      td 2nd Place
-      td 3rd Place
+  table class="table table-striped"
+    thead class="thead-dark"
+      tr
+        th scope="col" Who Voted
+        th scope="col" 1st Place
+        th scope="col" 2nd Place
+        th scope="col" 3rd Place
     -@votes.each do |vote|
       tr
-        td== "#{vote.username}"
+        th scope="row" == "#{vote.username}"
         td== "#{vote.first_place}"
         td== "#{vote.second_place}"
         td== "#{vote.third_place}"
 
   form action="/report/download" method="POST"
-    input type="submit" value="Download Report"
+    input type="submit" class="btn btn-primary" value="Download Report"
 
 -else
   p There are no votes yet!

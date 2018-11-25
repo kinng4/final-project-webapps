@@ -1,8 +1,16 @@
 p Welcome! Please Log-in below
 
 form action="/login" method="POST"
-  label for="username" Username:
-  input#username type="text" name="username"
-  label for="password" Password:
-  input#password type="password" name="password"
-  input type="submit" value="Log-in"
+  div class="form-group row"
+    label for="username" class="col-sm-2 col-form-label" Username
+    div class="col-sm-10"
+      input#username class="form-control" type="text" placeholder="Username" name="username" required=""
+  div class="form-group row"
+    label for="password" class="col-sm-2 col-form-label" Password
+    div class="col-sm-10"
+      input#password class="form-control" type="password" placeholder="Password" name="password" required=""
+  div class="form-group row"
+    div class="col-sm-10"
+      input class="btn btn-primary" type="submit" value="Log-in"
+
+p== @invalid_user

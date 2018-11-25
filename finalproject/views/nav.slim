@@ -1,14 +1,14 @@
-nav
-  ul
-    li <a href="/" title="Home">Home</a>
+nav class="navbar navbar-expand-lg  navbar-light"
+  ul class="navbar-nav mr-auto"
+    li class="nav-item" <a class="nav-link" href="/" title="Home">Home</a>
     -if session[:id]
       -if session[:id].role == 'instructor'
-        li <a href="/uploadcsv" title="UploadCSV">Upload CSV</a>
-        li <a href="/uploadzip" title="UploadZip">Upload Websites</a>
-        li <a href="/report" title="VoteReport">Vote Report</a>
+        li class="nav-item" <a class="nav-link" href="/uploadcsv" title="UploadCSV">Upload CSV</a>
+        li class="nav-item" <a class="nav-link" href="/uploadzip" title="UploadZip">Upload Websites</a>
+        li class="nav-item" <a class="nav-link" href="/report" title="VoteReport">Vote Report</a>
       -elsif session[:id].role == 'student'
-        li <a href="/vote" title="Vote">Vote</a>
-      li <a href="/logout" title="Logout">Logout</a>
+        li class="nav-item" <a class="nav-link" href="/vote" title="Vote">Vote</a>
+      li class="nav-item" <a class="nav-link" href="/logout" title="Logout">Logout</a>
     -else
-      li <a href="/register" title="Register">Register</a>
-      li <a href="/login" title="Login">Login</a>
+      li class="nav-item" <a class="nav-link" href="/register" title="Register">Register</a>
+      li class="nav-item" <a class="nav-link" href="/login" title="Login">Login</a>

@@ -1,5 +1,7 @@
-p== "Welcome #{session[:id].username}! Please upload the zip file containing the students' websites"
+h2== "Hi #{session[:id].username}! Please upload the zip file containing the students' websites"
 
 form action="/uploadzip" method="POST" enctype="multipart/form-data"
-  input type="file" name="file"
-  input type="submit" value="Upload-Zip"
+  div class="form-inline"
+    div class="form-group"
+      input type="file" name="file" class="form-control-file" required=""
+    input type="submit" class="btn btn-primary" value="Upload Zip"
