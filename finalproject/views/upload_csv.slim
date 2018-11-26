@@ -1,0 +1,5 @@
+p== "Welcome #{session[:id].username}! Please upload the csv file containing user credentials"
+
+form action="/uploadcsv" method="POST" enctype="multipart/form-data"
+  input type="file" name="file"
+  input type="submit" value="Upload-CSV"
