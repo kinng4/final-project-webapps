@@ -3,6 +3,7 @@
 require 'dm-core'
 require 'dm-migrations'
 require 'bcrypt'
+require 'csv'
 
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/development.db")
 
@@ -37,4 +38,35 @@ post '/register' do
     User.create(username: params[:username].downcase, password: hash_password, role: params[:role])
     redirect to("/login")
   end
+end
+
+get '/uploadcsv' do
+  @title = "Upload CSV"
+  if session[:id]
+    @instructor = User.get(session[:id].username)
+    halt(401, 'Not Authorized') unless @instructor.role == 'instructor'
+    slim :upload_csv
+  else
+    halt(401, 'Not Authorized')
+  end
+end
+
+post '/uploadcsv' do
+  tempfile = params[:file][:tempfile]
+  filename = params[:file][:filename]
+  target = "public/#{filename}"
+  File.open(target, 'wb') {|f| f.write tempfile.read }
+
+  # CSV.open(filename,'r') do |row|
+  #   puts row
+  # end
+
+  CSV.foreach(target, :headers => true) do |row|
+    hash_password = BCrypt::Password.create(row[1])
+    User.create(username: row[0].downcase, password: hash_password, role: row[2])
+
+
+  end
+
+  redirect to('/')
 end
