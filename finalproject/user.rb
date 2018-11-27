@@ -34,7 +34,9 @@ post '/register' do
     @invalid_username = "Sorry that username is already taken"
     slim :register
   else
-    hash_password = BCrypt::Password.create(params[:password]) #store this value in the database
+    #Perform hash and salt of the user's password
+    hash_password = BCrypt::Password.create(params[:password])
+    #Create a new user in the database
     User.create(username: params[:username].downcase, password: hash_password, role: params[:role])
     redirect to("/login")
   end
@@ -57,16 +59,10 @@ post '/uploadcsv' do
   target = "public/#{filename}"
   File.open(target, 'wb') {|f| f.write tempfile.read }
 
-  # CSV.open(filename,'r') do |row|
-  #   puts row
-  # end
-
   CSV.foreach(target, :headers => true) do |row|
+    user = User.get(row[0].downcase)
     hash_password = BCrypt::Password.create(row[1])
-    User.create(username: row[0].downcase, password: hash_password, role: row[2])
-
-
+    User.create(username: row[0].downcase, password: hash_password, role: row[2]) unless user
   end
-
   redirect to('/')
 end

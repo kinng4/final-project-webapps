@@ -38,9 +38,11 @@ post '/uploadzip' do
       if entry.name.end_with? '.html'
         #Split the path. Now arr[0] contains username and arr[1] contains html
         arr = entry.name.split('/')
-        #Add username and html file to the Sites database
-        Site.create(username: arr[0], site_html: arr[1])
+        #Add username and html file to the Sites database only if the user is not in the DB
+        user = Site.get(arr[0])
+        Site.create(username: arr[0], site_html: arr[1]) unless user
       end
+      #Store each student directory and its respective contents inside the public folder
       target = File.join("public/", entry.name)
       FileUtils::mkdir_p(File.dirname(target))
       zip_file.extract(entry, target) unless File.exist?(target)
