@@ -1,0 +1,35 @@
+body {
+    background-color: rgba(202, 216, 255, 0.88);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nav-item {
+    width: 33%;
+}
+
+li {
+    float: left;
+    width: 50%;
+    color: #0f0f0a;
+    background-color: #f8f9fa !important;
+
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #f8f9fa !important;
+}
+
+li a:hover {
+    background-color: #c7cdc4;
+}
