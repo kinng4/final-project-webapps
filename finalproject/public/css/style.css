@@ -1,35 +1,77 @@
+html{
+    font-size: 100%;
+}
+
 body {
     background-color: rgba(202, 216, 255, 0.88);
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-.nav-item {
-    width: 33%;
-}
-
-li {
+.list-group-item {
     float: left;
     width: 50%;
-    color: #0f0f0a;
     background-color: #f8f9fa !important;
-
 }
 
 li a {
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    background-color: #f8f9fa !important;
+    color: white !important;
 }
 
-li a:hover {
-    background-color: #c7cdc4;
+nav li:hover{
+    background: #060649;
+}
+
+nav {
+    background-color: #18187E;
+    padding: 0 !important;
+    margin-bottom: 2em;
+}
+
+.nav-item {
+    font-family: "Lucida Sans Unicode", "Helvetica", sans-serif;
+    font-size: 1em;
+    font-weight:300;
+    transition: background 0.8s;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+h1 {
+    font-family: "Arial Black", "Helvetica", sans-serif;
+    font-weight: bold;
+    font-size: 3em;
+    text-align: center;
+    color: whitesmoke;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin-top:1em;
+    margin-bottom: 1em;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Trebuchet MS", "Helvetica", sans-serif;
+    color: black;
+    font-size: 1.5em;
+    font-weight:bold;
+    padding-bottom: 1em;
+}
+
+h3 {
+    text-align: center;
+    font-family: "Tahoma", "Helvetica", sans-serif;
+    color: black;
+    font-weight:bold;
+    font-size: 1.2em;
+}
+
+p {
+    font-family: "Arial Black", "Helvetica", sans-serif;
+    color: black;
+    font-size:1.3em;
+}
+
+label {
+    font-family: "Arial", "Helvetica", sans-serif;
+    color: black;
+    font-size:1em;
+    font-weight: bold;
 }
