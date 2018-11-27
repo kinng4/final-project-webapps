@@ -1,11 +1,10 @@
-
 html dir="ltr" lang="en"
   head
     meta charset="utf-8"
       link href="/css/style.css" media="screen" rel="stylesheet"
 
-nav class="navbar navbar-expand-lg bg-light"
-  ul
+nav class="navbar navbar-expand-lg  navbar-light"
+  ul class="navbar-nav mr-auto"
     li class="nav-item" <a class="nav-link" href="/" title="Home">Home</a>
     -if session[:id]
       -if session[:id].role == 'instructor'

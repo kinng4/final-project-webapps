@@ -1,4 +1,4 @@
-p Welcome to the registration page! If you are a new user please register below.
+h2 Welcome to the registration page! If you are a new user please register below.
 
 form action="/register" method="POST"
   div class="form-group row"
@@ -9,7 +9,6 @@ form action="/register" method="POST"
     label for="password" class="col-sm-2 col-form-label" Password
     div class="col-sm-10"
       input#password class="form-control" placeholder="Password" type="password" name="password" required=""
-  p Please select your role:
   div class="form-check form-check-inline"
     input#stud class="form-check-input" type="radio" name="role" value="student" required=""
     label for="stud" class="form-check-label" Student

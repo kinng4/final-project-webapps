@@ -1,14 +1,16 @@
 - if session[:id]
   h2== "Welcome #{session[:id].username}! Take a look at these amazing Website designs"
--else
-  h2 Welcome! Please log-in. If you are a new user register.
 
--if @count_sites > 0
-  ul class="list-group"
-  -@websites.each do |site|
-    li class="list-group-item"
-      h3== "Website Design by: #{site.username}"
-      iframe src='/#{site.username}/#{site.site_html}' height='500' width='100%'
+  - if @count_sites > 0
+    ul class="list-group"
+    - @websites.each do |site|
+      li class="list-group-item"
+        h3== "Website Design by #{site.username}"
+        iframe src='/#{site.username}/#{site.site_html}' height='500' width='100%'
+  - else
+    p There are no websites to show yet!
+
 -else
-  p There are no websites to show yet!
+  h2 Welcome! Please Log-in or Register if you're a new user.
+
 

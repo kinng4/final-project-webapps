@@ -1,5 +1,5 @@
 -if @student.vote_bit == 0
-  h2== "Hi #{session[:id].username}! Please indicate your top three users with the best designs"
+  h2== "Hi #{session[:id].username}! Please vote for the top three users with the best designs"
 
   form action="/vote" method="POST"
     -if @sites_count > 0
